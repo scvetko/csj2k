@@ -744,9 +744,10 @@ namespace CSJ2K.j2k.codestream.reader
 					// There is already one scheduled extra tile-part. In this
 					// case just add place for the current one
 					nExtraTp = 1;
-				}
-				
-				tileParts[tile] += nExtraTp;
+                    remainingTileParts += 1;
+                }
+
+                tileParts[tile] += nExtraTp;
 				nrOfTileParts = tileParts[tile];
 				FacilityManager.getMsgLogger().printmsg(CSJ2K.j2k.util.MsgLogger_Fields.WARNING, "Header of tile-part " + tilePart + " of tile " + tile + ", does not indicate the total" + " number of tile-parts. Assuming that there are " + nrOfTileParts + " tile-parts for this tile.");
 				
@@ -2133,11 +2134,11 @@ namespace CSJ2K.j2k.codestream.reader
 					}
 				}
 			}
-			catch (System.IO.EndOfStreamException e)
+			catch (System.IO.EndOfStreamException)
 			{
 				// Should never happen. Truncated codestream are normally found by
 				// the class constructor
-				throw e;
+				throw;
 			}
 			
 			// In truncation mode, update the number of read bytes

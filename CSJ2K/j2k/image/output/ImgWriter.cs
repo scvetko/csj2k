@@ -157,7 +157,14 @@ namespace CSJ2K.j2k.image.output
 				// Loop on horizontal tiles
 				for (int x = 0; x < nT.x; x++)
 				{
-					src.setTile(x, y);
+					try
+					{
+						src.setTile(x, y);
+					}
+					catch(Exception e)
+					{
+						FacilityManager.getMsgLogger().printmsg(MsgLogger_Fields.WARNING, "Error in setTile:\n" + e.Message);
+					}
 					write();
 				} // End loop on horizontal tiles            
 			} // End loop on vertical tiles

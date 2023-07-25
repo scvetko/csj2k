@@ -1421,7 +1421,7 @@ namespace CSJ2K.j2k.codestream.reader
 					{
 						ehs.seek(curOff);
 					}
-					catch (System.IO.EndOfStreamException e)
+					catch (System.IO.EndOfStreamException)
 					{
 						if (l == 0)
 						{
@@ -1434,7 +1434,7 @@ namespace CSJ2K.j2k.codestream.reader
 							ccb.ntp[l] = 0;
 							ccb.pktIdx[l] = - 1;
 						}
-						throw new System.IO.EndOfStreamException();
+						throw;
 					}
 					
 					// If truncation mode
